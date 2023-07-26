@@ -47,4 +47,22 @@ class Player
   {
     $this->orientation = $newOrientation;
   }
+
+  public function turnLeft()
+  {
+    switch ($this->orientation) {
+      case 'N':
+        $this->orientation = 'W';
+        break;
+      case 'E':
+        $this->orientation = 'N';
+        break;
+      case 'S':
+        $this->orientation = 'E';
+        break;
+      case 'W':
+        $this->orientation = 'S';
+        break;
+    }
+  }
 }
