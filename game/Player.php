@@ -7,8 +7,17 @@ namespace App\Game;
  */
 class Player
 {
+  /**
+   * @var x Position x du joueur sur la grille
+   */
   private int $x;
+  /**
+   * @var y Position y du joueur sur la grille
+   */
   private int $y;
+  /**
+   * @var orientation orientation du joueur sur la grille
+   */
   private string $orientation;
 
   public function __construct(int $x, int $y, string $orientation)
@@ -18,36 +27,57 @@ class Player
     $this->orientation = $orientation;
   }
 
+  /**
+   * @return int la position x du joueur
+   */
   public function getPosX()
   {
     return $this->x;
   }
 
+  /**
+   * @return int la position y du joueur
+   */
   public function getPosY()
   {
     return $this->y;
   }
 
+  /**
+   * @return string l'orientation du joueur sur le plateau
+   */
   public function getOrientation()
   {
     return $this->orientation;
   }
 
+  /**
+   * @param int $pos la nouvelle position x du joueur
+   */
   public function setPosX($pos)
   {
     $this->x = $pos;
   }
 
+  /**
+   * @param int $pos la nouvelle position y du joueur
+   */
   public function setPosY($pos)
   {
     $this->y = $pos;
   }
 
+  /**
+   * @param string $newOrientation la nouvelle orientation du joueur
+   */
   public function setOrientation($newOrientation)
   {
     $this->orientation = $newOrientation;
   }
 
+  /**
+   * @return string la nouvelle orientation du joueur après avoir tourner à gauche
+   */
   public function turnLeft()
   {
     switch ($this->orientation) {
@@ -66,6 +96,9 @@ class Player
     }
   }
 
+  /**
+   * @return string la nouvelle orientation du joueur après avoir tourner à droite
+   */
   public function turnRight()
   {
     switch ($this->orientation) {
