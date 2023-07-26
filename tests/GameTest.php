@@ -9,7 +9,7 @@ use App\Game\Player;
  */
 final class GameTest extends TestCase
 {
-  public function testInitialValuesPlayer(): void
+  public function testPlayerInitialValues(): void
   {
     $player = new Player(5, 5, 'N');
     $this->assertEquals(5, $player->getPosX());
@@ -17,59 +17,59 @@ final class GameTest extends TestCase
     $this->assertEquals('N', $player->getOrientation());
   }
 
-  public function testTurnLeftForPlayerAtNorthPosition(): void
+  public function testPlayerTurnLeftAtNorthPosition(): void
   {
     $player = new Player(5, 5, 'N');
     $player->turnLeft();
     $this->assertEquals('W', $player->getOrientation());
   }
 
-  public function testTurnLeftForPlayerAtEastPosition(): void
+  public function testPlayerTurnLeftAtEastPosition(): void
   {
     $player = new Player(5, 5, 'E');
     $player->turnLeft();
     $this->assertEquals('N', $player->getOrientation());
   }
 
-  public function testTurnLeftForPlayerAtSouthPosition(): void
+  public function testPlayerTurnLeftAtSouthPosition(): void
   {
     $player = new Player(5, 5, 'S');
     $player->turnLeft();
     $this->assertEquals('E', $player->getOrientation());
   }
 
-  public function testTurnLeftForPlayerAtWestPosition(): void
+  public function testPlayerTurnLeftAtWestPosition(): void
   {
     $player = new Player(5, 5, 'W');
     $player->turnLeft();
     $this->assertEquals('S', $player->getOrientation());
   }
 
-  public function testTurnRightForPlayerAtNorthPosition(): void
+  public function testPlayerTurnRightAtNorthPosition(): void
   {
     $player = new Player(5, 5, 'N');
-    $player->turnLeft();
+    $player->turnRight();
     $this->assertEquals('E', $player->getOrientation());
   }
 
-  public function testTurnRightForPlayerAtEastPosition(): void
+  public function testPlayerTurnRightAtEastPosition(): void
   {
     $player = new Player(5, 5, 'E');
-    $player->turnLeft();
+    $player->turnRight();
     $this->assertEquals('S', $player->getOrientation());
   }
 
-  public function testTurnRightForPlayerAtSouthPosition(): void
+  public function testPlayerTurnRightAtSouthPosition(): void
   {
     $player = new Player(5, 5, 'S');
-    $player->turnLeft();
+    $player->turnRight();
     $this->assertEquals('W', $player->getOrientation());
   }
 
-  public function testTurnRightForPlayerAtWestPosition(): void
+  public function testPlayerTurnRightAtWestPosition(): void
   {
     $player = new Player(5, 5, 'W');
-    $player->turnLeft();
+    $player->turnRight();
     $this->assertEquals('N', $player->getOrientation());
   }
 }
