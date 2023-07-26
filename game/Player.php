@@ -116,4 +116,25 @@ class Player
         break;
     }
   }
+
+  /**
+   * @param int $steps nombre à effectuer
+   */
+  public function moveForward(int $steps)
+  {
+    switch ($this->orientation) {
+      case 'N':
+        $this->y -= $steps;
+        break;
+      case 'E':
+        $this->x += $steps;
+        break;
+      case 'S':
+        $this->y += $steps;
+        break;
+      case 'W':
+        $this->x -= $steps;
+        break;
+    }
+  }
 }
