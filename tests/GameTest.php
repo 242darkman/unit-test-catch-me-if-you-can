@@ -16,4 +16,32 @@ final class GameTest extends TestCase
     $this->assertEquals(5, $player->getPosY());
     $this->assertEquals('N', $player->getOrientation());
   }
+
+  public function testTurnLeftForPlayerAtNorthPosition(): void
+  {
+    $player = new Player(5, 5, 'N');
+    $player->turnLeft();
+    $this->assertEquals('W', $player->getOrientation());
+  }
+
+  public function testTurnLeftForPlayerAtEastPosition(): void
+  {
+    $player = new Player(5, 5, 'E');
+    $player->turnLeft();
+    $this->assertEquals('N', $player->getOrientation());
+  }
+
+  public function testTurnLeftForPlayerAtSouthPosition(): void
+  {
+    $player = new Player(5, 5, 'S');
+    $player->turnLeft();
+    $this->assertEquals('E', $player->getOrientation());
+  }
+
+  public function testTurnLeftForPlayerAtWestPosition(): void
+  {
+    $player = new Player(5, 5, 'W');
+    $player->turnLeft();
+    $this->assertEquals('S', $player->getOrientation());
+  }
 }
