@@ -67,17 +67,12 @@ class Game
         }
         break;
       case 'W':
-        echo "Player player1 position X ===> " . $player1->getPosX() . "\n";
-        echo "Player player2 position X ===> " . $player2->getPosX() . "\n";
-        echo "Player player1 position Y ===> " . $player1->getPosY() . "\n";
-        echo "Player player2 position Y ===> " . $player2->getPosY() . "\n";
         if ($player1->getPosY() == $player2->getPosY() && $player1->getPosX() > $player2->getPosX()) {
           $distanceBetweenPlayer = $player1->getPosX() - $player2->getPosX();
         }
         break;
     }
 
-    //echo "Distance between player " . $player1->getOrientation() . " -> " . $distanceBetweenPlayer . "\n";
     return $distanceBetweenPlayer;
   }
 
