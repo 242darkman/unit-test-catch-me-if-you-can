@@ -136,4 +136,11 @@ final class GameTest extends TestCase
     $distance = $this->game->checkVision($this->game->getPlayer1(), $this->game->getPlayer2());
     $this->assertEquals(2, $distance);
   }
+
+  public function testIsGameOver()
+  {
+    $this->game->getPlayer2()->setPosX(5);
+    $this->game->getPlayer2()->setPosY(5);
+    $this->assertTrue($this->game->isGameOver());
+  }
 }
