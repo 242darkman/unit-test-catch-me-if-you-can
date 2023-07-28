@@ -37,4 +37,43 @@ final class GameTest extends TestCase
     $this->assertEquals(Board::PLAYER1, $game->getBoard()->getCellState($player1->getPosX(), $player1->getPosY()));
     $this->assertEquals(Board::PLAYER2, $game->getBoard()->getCellState($player2->getPosX(), $player2->getPosY()));
   }
+
+  public function testPlayTurnLeft(): void
+  {
+    $this->game->playTurn($this->player1, 'left');
+    $this->assertEquals('W', $this->player1->getOrientation());
+  }
+
+  public function testPlayTurnRight()
+  {
+    $this->game->playTurn($this->player1, 'right');
+    $this->assertEquals('E', $this->player1->getOrientation());
+  }
+
+  public function testPlayTurnForwardNorth()
+  {
+    $this->game->playTurn($this->player1, 'forward', 2);
+    $this->assertEquals(3, $this->player1->getPosY());
+  }
+
+  public function testPlayTurnForwardEast()
+  {
+    $this->player1->setOrientation('E');
+    $this->game->playTurn($this->player1, 'forward', 2);
+    $this->assertEquals(7, $this->player1->getPosX());
+  }
+
+  public function testPlayTurnForwardSouth()
+  {
+    $this->player1->setOrientation('S');
+    $this->game->playTurn($this->player1, 'forward', 2);
+    $this->assertEquals(7, $this->player1->getPosY());
+  }
+
+  public function testPlayTurnForwardWest()
+  {
+    $this->player1->setOrientation('W');
+    $this->game->playTurn($this->player1, 'forward', 2);
+    $this->assertEquals(3, $this->player1->getPosX());
+  }
 }
