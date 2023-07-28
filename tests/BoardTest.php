@@ -83,4 +83,16 @@ final class BoardTest extends TestCase
     $this->assertEquals(Board::PLAYER1, $grid[1][1], "Le joueur 1 doit être placé à la position (1, 1)");
     $this->assertEquals(Board::PLAYER2, $grid[2][2], "Le joueur 2 doit être placé à la position (2, 2)");
   }
+  public function testDisplay(): void
+  {
+    $player1 = new Player(1, 1, 'N');
+    $player2 = new Player(2, 2, 'S');
+
+    $this->board->placePlayer($player1, Board::PLAYER1);
+    $this->board->placePlayer($player2, Board::PLAYER2);
+
+    $this->expectOutputString("..........\n.1........\n..2.......\n..........\n..........\n..........\n..........\n..........\n..........\n..........\n");
+
+    $this->board->display();
+  }
 }
