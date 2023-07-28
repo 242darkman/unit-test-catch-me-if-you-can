@@ -16,4 +16,8 @@ class Board
      */
     $this->grid = array_fill(0, 10, array_fill(0, 10, 0));
   }
+  public function isValidPosition(int $x, int $y): bool
+  {
+    return $x >= 0 && $x < 10 && $y >= 0 && $y < 10;
+  }
 }
