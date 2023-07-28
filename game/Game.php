@@ -23,6 +23,24 @@ class Game
   }
 
 
+  public function playTurn(Player $player, string $action, int $steps = 1)
+  {
+    switch ($action) {
+      case 'left':
+        $player->turnLeft();
+        break;
+      case 'right':
+        $player->turnRight();
+        break;
+      case 'forward':
+        $player->moveForward($steps);
+        break;
+    }
+
+    if (!$this->board->isValidPosition($player->getPosX(), $player->getPosY())) {
+      $player->moveForward($steps); // on annule le mouvement du joueur
+    }
+  }
 
   public function getPlayer1()
   {
