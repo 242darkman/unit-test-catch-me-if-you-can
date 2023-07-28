@@ -79,4 +79,63 @@ final class GameTest extends TestCase
     $this->game->playTurn($this->player1, 'forward', 2);
     $this->assertEquals(3, $this->player1->getPosX());
   }
+
+  public function testCheckVisionNorthNull()
+  {
+    $distance = $this->game->checkVision($this->player1, $this->player2);
+    $this->assertNull($distance);
+  }
+
+  public function testCheckVisionNorthValue()
+  {
+    $this->player2->setPosX(5);
+    $this->player2->setPosY(4);
+    $distance = $this->game->checkVision($this->player1, $this->player2);
+    $this->assertEquals(1, $distance);
+  }
+
+  public function testCheckVisionEastNull()
+  {
+    $this->player1->setOrientation('E');
+    $distance = $this->game->checkVision($this->player1, $this->player2);
+    $this->assertNull($distance);
+  }
+
+  public function testCheckVisionEastValue()
+  {
+    $this->player2->setPosX(6);
+    $this->player2->setPosX(5);
+    $distance = $this->game->checkVision($this->player1, $this->player2);
+    $this->assertEquals(1, $distance);
+  }
+
+  public function testCheckVisionSouthNull()
+  {
+    $this->player1->setOrientation('S');
+    $distance = $this->game->checkVision($this->player1, $this->player2);
+    $this->assertNull($distance);
+  }
+
+  public function testCheckVisionSouthValue()
+  {
+    $this->player2->setPosX(5);
+    $this->player2->setPosY(4);
+    $distance = $this->game->checkVision($this->player1, $this->player2);
+    $this->assertEquals(1, $distance);
+  }
+
+  public function testCheckVisionWestNull()
+  {
+    $this->player1->setOrientation('W');
+    $distance = $this->game->checkVision($this->player1, $this->player2);
+    $this->assertNull($distance);
+  }
+
+  public function testCheckVisionWestValue()
+  {
+    $this->player2->setPosX(3);
+    $this->player2->setPosY(5);
+    $distance = $this->game->checkVision($this->player1, $this->player2);
+    $this->assertEquals(2, $distance);
+  }
 }
