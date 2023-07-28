@@ -30,6 +30,12 @@ class Board
     return $x >= 0 && $x < 10 && $y >= 0 && $y < 10;
   }
 
+  public function placePlayer(Player $player, int $playerNum)
+  {
+    if ($this->isValidPosition($player->getPosX(), $player->getPosY())) {
+      $this->grid[$player->getPosY()][$player->getPosX()] = $playerNum;
+    }
+  }
   /**
    * Récupère la grille du plateau de jeu.
    *
