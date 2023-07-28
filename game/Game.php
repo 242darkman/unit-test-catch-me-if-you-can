@@ -7,6 +7,9 @@ require 'vendor/autoload.php';
 use App\Game\Board;
 use App\Game\Player;
 
+/**
+ * @author Brandon VOUVOU
+ */
 class Game
 {
   private Player $player1;

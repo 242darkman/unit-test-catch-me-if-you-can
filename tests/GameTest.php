@@ -5,6 +5,9 @@ use App\Game\Game;
 use App\Game\Player;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @author Brandon VOUVOU
+ */
 final class GameTest extends TestCase
 {
   private $player1;
