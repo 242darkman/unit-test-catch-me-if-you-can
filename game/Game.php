@@ -45,6 +45,42 @@ class Game
     }
   }
 
+  public function checkVision(Player $player1, Player $player2)
+  {
+    $distanceBetweenPlayer = null;
+
+
+    switch ($player1->getOrientation()) {
+      case 'N':
+        if ($player1->getPosX() == $player2->getPosX() && $player1->getPosY() > $player2->getPosY()) {
+          $distanceBetweenPlayer = $player1->getPosY() - $player2->getPosY();
+        }
+        break;
+      case 'E':
+        if ($player1->getPosY() == $player2->getPosY() && $player1->getPosX() < $player2->getPosX()) {
+          $distanceBetweenPlayer = $player2->getPosX() - $player1->getPosX();
+        }
+        break;
+      case 'S':
+        if ($player1->getPosX() == $player2->getPosX() && $player1->getPosY() < $player2->getPosY()) {
+          $distanceBetweenPlayer = $player2->getPosY() - $player1->getPosY();
+        }
+        break;
+      case 'W':
+        echo "Player player1 position X ===> " . $player1->getPosX() . "\n";
+        echo "Player player2 position X ===> " . $player2->getPosX() . "\n";
+        echo "Player player1 position Y ===> " . $player1->getPosY() . "\n";
+        echo "Player player2 position Y ===> " . $player2->getPosY() . "\n";
+        if ($player1->getPosY() == $player2->getPosY() && $player1->getPosX() > $player2->getPosX()) {
+          $distanceBetweenPlayer = $player1->getPosX() - $player2->getPosX();
+        }
+        break;
+    }
+
+    //echo "Distance between player " . $player1->getOrientation() . " -> " . $distanceBetweenPlayer . "\n";
+    return $distanceBetweenPlayer;
+  }
+
   public function getPlayer1()
   {
     return $this->player1;
