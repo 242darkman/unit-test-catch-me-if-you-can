@@ -71,6 +71,13 @@ final class BoardTest extends TestCase
     $this->assertFalse($this->board->isValidPosition(5, 11));
     $this->assertFalse($this->board->isValidPosition(11, 11));
   }
+
+  /**
+   * Teste la méthode placePlayer de la classe Board.
+   * Cette méthode vérifie si les joueurs sont correctement placés sur la grille.
+   *
+   * @return void
+   */
   public function testPlacePlayer(): void
   {
     $player1 = new Player(1, 1, 'N');
@@ -83,6 +90,13 @@ final class BoardTest extends TestCase
     $this->assertEquals(Board::PLAYER1, $grid[1][1], "Le joueur 1 doit être placé à la position (1, 1)");
     $this->assertEquals(Board::PLAYER2, $grid[2][2], "Le joueur 2 doit être placé à la position (2, 2)");
   }
+
+  /**
+   * Teste la méthode display de la classe Board.
+   * Cette méthode vérifie si la grille est correctement affichée en console.
+   *
+   * @return void
+   */
   public function testDisplay(): void
   {
     $player1 = new Player(1, 1, 'N');

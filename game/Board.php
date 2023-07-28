@@ -34,12 +34,24 @@ class Board
     return $x >= 0 && $x < 10 && $y >= 0 && $y < 10;
   }
 
+  /**
+   * Place un joueur sur la grille à une position donnée.
+   *
+   * Cette méthode place un joueur sur la grille, à la position indiquée par ses coordonnées x et y.
+   * Avant de placer le joueur, elle vérifie si la position est valide en utilisant la méthode isValidPosition.
+   * Si la position est valide, le joueur est placé sur la grille. Sinon, rien ne se produit.
+   * Le numéro du joueur est utilisé pour représenter le joueur sur la grille.
+   *
+   * @param Player $player Le joueur à placer sur la grille. L'objet joueur doit avoir des coordonnées x et y valides.
+   * @param int $playerNum Le numéro du joueur, utilisé pour représenter le joueur sur la grille.
+   */
   public function placePlayer(Player $player, int $playerNum)
   {
     if ($this->isValidPosition($player->getPosX(), $player->getPosY())) {
       $this->grid[$player->getPosY()][$player->getPosX()] = $playerNum;
     }
   }
+
   /**
    * Récupère la grille du plateau de jeu.
    *
@@ -51,6 +63,15 @@ class Board
   {
     return $this->grid;
   }
+
+  /**
+   * Affiche la grille de jeu en console.
+   *
+   * Cette méthode parcourt chaque cellule de la grille de jeu et affiche un caractère correspondant à son état.
+   * Si la cellule est vide, elle affiche un '.'. Si la cellule contient le joueur 1, elle affiche '1', 
+   * et si elle contient le joueur 2, elle affiche '2'.
+   * Chaque ligne de la grille est affichée sur une nouvelle ligne de la console.
+   */
   public function display()
   {
     foreach ($this->grid as $row) {
