@@ -178,4 +178,12 @@ final class GameTest extends TestCase
       }
     }
   }
+  public function testIsValidPosition(): void
+  {
+    $board = new Board();
+    $this->assertTrue($board->isValidPosition(5, 5));
+    $this->assertFalse($board->isValidPosition(-2, 5));
+    $this->assertFalse($board->isValidPosition(5, 11));
+    $this->assertFalse($board->isValidPosition(11, 11));
+  }
 }
