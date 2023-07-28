@@ -178,6 +178,19 @@ final class GameTest extends TestCase
       }
     }
   }
+
+  /**
+   * Teste si la méthode isValidPosition fonctionne correctement.
+   *
+   * Cette méthode vérifie que la méthode isValidPosition de la classe Board 
+   * renvoie bien true pour une position valide (5,5) sur la grille, et false
+   * pour des positions non valides (-2,5), (5,11) et (11,11).
+   *
+   * La méthode ne prend aucun paramètre en entrée et n'en renvoie aucun. 
+   * Au lieu de cela, elle utilise les assertions de PHPUnit pour vérifier 
+   * le comportement de la méthode isValidPosition. Si le comportement ne 
+   * correspond pas aux attentes, PHPUnit lancera une exception et le test échouera.
+   */
   public function testIsValidPosition(): void
   {
     $board = new Board();
