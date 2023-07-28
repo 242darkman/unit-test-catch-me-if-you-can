@@ -1,7 +1,7 @@
 {
   "scripts": {
     "test": [
-      "phpunit ./tests/GameTest.php"
+      "phpunit ./tests"
     ]
   },
   "require": {
