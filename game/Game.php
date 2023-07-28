@@ -76,6 +76,12 @@ class Game
     return $distanceBetweenPlayer;
   }
 
+  public function isGameOver(): bool
+  {
+    $isGameOver = $this->player1->getPosX() == $this->player2->getPosX() && $this->player1->getPosY() == $this->player2->getPosY();
+    return $isGameOver;
+  }
+
   public function getPlayer1()
   {
     return $this->player1;
