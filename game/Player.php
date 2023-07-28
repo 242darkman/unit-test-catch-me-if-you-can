@@ -54,23 +54,23 @@ class Player
   /**
    * @param int $pos la nouvelle position x du joueur
    */
-  public function setPosX($pos)
+  public function setPosX(int $posX)
   {
-    $this->x = $pos;
+    $this->x = $posX;
   }
 
   /**
    * @param int $pos la nouvelle position y du joueur
    */
-  public function setPosY($pos)
+  public function setPosY(int $posY)
   {
-    $this->y = $pos;
+    $this->y = $posY;
   }
 
   /**
    * @param string $newOrientation la nouvelle orientation du joueur
    */
-  public function setOrientation($newOrientation)
+  public function setOrientation(string $newOrientation)
   {
     $this->orientation = $newOrientation;
   }
