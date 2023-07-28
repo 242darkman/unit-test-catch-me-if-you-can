@@ -65,6 +65,19 @@ class Board
   }
 
   /**
+   * Récupère l'état de la cellule aux coordonnées spécifiées.
+   *
+   * @param int $x La coordonnée x de la cellule.
+   * @param int $y La coordonnée y de la cellule.
+   * @return int L'état de la cellule. Retourne une des constantes de classe 
+   *             EMPTY, PLAYER1, PLAYER2 pour indiquer si la cellule est vide ou contient un joueur.
+   */
+  public function getCellState(int $x, int $y): int
+  {
+    return $this->grid[$y][$x];
+  }
+
+  /**
    * Affiche la grille de jeu en console.
    *
    * Cette méthode parcourt chaque cellule de la grille de jeu et affiche un caractère correspondant à son état.
