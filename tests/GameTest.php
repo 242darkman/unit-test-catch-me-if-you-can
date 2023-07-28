@@ -10,8 +10,6 @@ use PHPUnit\Framework\TestCase;
  */
 final class GameTest extends TestCase
 {
-  private $player1;
-  private $player2;
   private $game;
 
   /**
@@ -22,9 +20,9 @@ final class GameTest extends TestCase
   protected function setUp(): void
   {
     parent::setUp();
-    $this->player1 = new Player(5, 5, 'N');
-    $this->player2 = new Player(4, 4, 'S');
-    $this->game = new Game($this->player1, $this->player2);
+    $player1 = new Player(5, 5, 'N');
+    $player2 = new Player(4, 4, 'S');
+    $this->game = new Game($player1, $player2);
   }
 
   public function testInitialValues(): void
@@ -43,99 +41,99 @@ final class GameTest extends TestCase
 
   public function testPlayTurnLeft(): void
   {
-    $this->game->playTurn($this->player1, 'left');
-    $this->assertEquals('W', $this->player1->getOrientation());
+    $this->game->playTurn($this->game->getPlayer1(), 'left');
+    $this->assertEquals('W', $this->game->getPlayer1()->getOrientation());
   }
 
   public function testPlayTurnRight()
   {
-    $this->game->playTurn($this->player1, 'right');
-    $this->assertEquals('E', $this->player1->getOrientation());
+    $this->game->playTurn($this->game->getPlayer1(), 'right');
+    $this->assertEquals('E', $this->game->getPlayer1()->getOrientation());
   }
 
   public function testPlayTurnForwardNorth()
   {
-    $this->game->playTurn($this->player1, 'forward', 2);
-    $this->assertEquals(3, $this->player1->getPosY());
+    $this->game->playTurn($this->game->getPlayer1(), 'forward', 2);
+    $this->assertEquals(3, $this->game->getPlayer1()->getPosY());
   }
 
   public function testPlayTurnForwardEast()
   {
-    $this->player1->setOrientation('E');
-    $this->game->playTurn($this->player1, 'forward', 2);
-    $this->assertEquals(7, $this->player1->getPosX());
+    $this->game->getPlayer1()->setOrientation('E');
+    $this->game->playTurn($this->game->getPlayer1(), 'forward', 2);
+    $this->assertEquals(7, $this->game->getPlayer1()->getPosX());
   }
 
   public function testPlayTurnForwardSouth()
   {
-    $this->player1->setOrientation('S');
-    $this->game->playTurn($this->player1, 'forward', 2);
-    $this->assertEquals(7, $this->player1->getPosY());
+    $this->game->getPlayer1()->setOrientation('S');
+    $this->game->playTurn($this->game->getPlayer1(), 'forward', 2);
+    $this->assertEquals(7, $this->game->getPlayer1()->getPosY());
   }
 
   public function testPlayTurnForwardWest()
   {
-    $this->player1->setOrientation('W');
-    $this->game->playTurn($this->player1, 'forward', 2);
-    $this->assertEquals(3, $this->player1->getPosX());
+    $this->game->getPlayer1()->setOrientation('W');
+    $this->game->playTurn($this->game->getPlayer1(), 'forward', 2);
+    $this->assertEquals(3, $this->game->getPlayer1()->getPosX());
   }
 
   public function testCheckVisionNorthNull()
   {
-    $distance = $this->game->checkVision($this->player1, $this->player2);
+    $distance = $this->game->checkVision($this->game->getPlayer1(), $this->game->getPlayer2());
     $this->assertNull($distance);
   }
 
   public function testCheckVisionNorthValue()
   {
-    $this->player2->setPosX(5);
-    $this->player2->setPosY(4);
-    $distance = $this->game->checkVision($this->player1, $this->player2);
+    $this->game->getPlayer2()->setPosX(5);
+    $this->game->getPlayer2()->setPosY(4);
+    $distance = $this->game->checkVision($this->game->getPlayer1(), $this->game->getPlayer2());
     $this->assertEquals(1, $distance);
   }
 
   public function testCheckVisionEastNull()
   {
-    $this->player1->setOrientation('E');
-    $distance = $this->game->checkVision($this->player1, $this->player2);
+    $this->game->getPlayer1()->setOrientation('E');
+    $distance = $this->game->checkVision($this->game->getPlayer1(), $this->game->getPlayer2());
     $this->assertNull($distance);
   }
 
   public function testCheckVisionEastValue()
   {
-    $this->player2->setPosX(6);
-    $this->player2->setPosX(5);
-    $distance = $this->game->checkVision($this->player1, $this->player2);
+    $this->game->getPlayer2()->setPosX(6);
+    $this->game->getPlayer2()->setPosY(5);
+    $distance = $this->game->checkVision($this->game->getPlayer1(), $this->game->getPlayer2());
     $this->assertEquals(1, $distance);
   }
 
   public function testCheckVisionSouthNull()
   {
-    $this->player1->setOrientation('S');
-    $distance = $this->game->checkVision($this->player1, $this->player2);
+    $this->game->getPlayer1()->setOrientation('S');
+    $distance = $this->game->checkVision($this->game->getPlayer1(), $this->game->getPlayer2());
     $this->assertNull($distance);
   }
 
   public function testCheckVisionSouthValue()
   {
-    $this->player2->setPosX(5);
-    $this->player2->setPosY(4);
-    $distance = $this->game->checkVision($this->player1, $this->player2);
+    $this->game->getPlayer2()->setPosX(5);
+    $this->game->getPlayer2()->setPosY(4);
+    $distance = $this->game->checkVision($this->game->getPlayer1(), $this->game->getPlayer2());
     $this->assertEquals(1, $distance);
   }
 
   public function testCheckVisionWestNull()
   {
-    $this->player1->setOrientation('W');
-    $distance = $this->game->checkVision($this->player1, $this->player2);
+    $this->game->getPlayer1()->setOrientation('W');
+    $distance = $this->game->checkVision($this->game->getPlayer1(), $this->game->getPlayer2());
     $this->assertNull($distance);
   }
 
   public function testCheckVisionWestValue()
   {
-    $this->player2->setPosX(3);
-    $this->player2->setPosY(5);
-    $distance = $this->game->checkVision($this->player1, $this->player2);
+    $this->game->getPlayer2()->setPosX(3);
+    $this->game->getPlayer2()->setPosY(5);
+    $distance = $this->game->checkVision($this->game->getPlayer1(), $this->game->getPlayer2());
     $this->assertEquals(2, $distance);
   }
 }
