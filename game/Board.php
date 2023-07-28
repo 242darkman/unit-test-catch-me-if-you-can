@@ -8,11 +8,15 @@ namespace App\Game;
 class Board
 {
   private array $grid;
+  const EMPTY = 0;
+  const PLAYER1 = 1;
+  const PLAYER2 = 2;
 
   public function __construct()
   {
-    $this->grid = array_fill(0, 10, array_fill(0, 10, 0));
+    $this->grid = array_fill(0, 10, array_fill(0, 10, self::EMPTY));
   }
+
 
   /**
    * Verifie si une position donnée est valide sur la grille.
@@ -46,5 +50,24 @@ class Board
   public function getGrid()
   {
     return $this->grid;
+  }
+  public function display()
+  {
+    foreach ($this->grid as $row) {
+      foreach ($row as $cell) {
+        switch ($cell) {
+          case self::EMPTY:
+            echo '.';
+            break;
+          case self::PLAYER1:
+            echo '1';
+            break;
+          case self::PLAYER2:
+            echo '2';
+            break;
+        }
+      }
+      echo "\n";
+    }
   }
 }
