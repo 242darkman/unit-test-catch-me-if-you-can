@@ -7,13 +7,10 @@ namespace App\Game;
  */
 class Board
 {
-  public array $grid;
+  private array $grid;
 
   public function __construct()
   {
-    /**
-     * @var array grid 
-     */
     $this->grid = array_fill(0, 10, array_fill(0, 10, 0));
   }
 
@@ -31,5 +28,17 @@ class Board
   public function isValidPosition(int $x, int $y): bool
   {
     return $x >= 0 && $x < 10 && $y >= 0 && $y < 10;
+  }
+
+  /**
+   * Récupère la grille du plateau de jeu.
+   *
+   * Cette méthode renvoie la grille qui représente le plateau de jeu.
+   *
+   * @return array La grille du plateau de jeu.
+   */
+  public function getGrid()
+  {
+    return $this->grid;
   }
 }
