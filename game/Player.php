@@ -19,6 +19,8 @@ class Player
    * @var orientation orientation du joueur sur la grille
    */
   private string $orientation;
+  private int $oldX;
+  private int $oldY;
 
   public function __construct(int $x, int $y, string $orientation)
   {
@@ -43,6 +45,16 @@ class Player
     return $this->y;
   }
 
+  public function getOldPosX()
+  {
+    return $this->oldX;
+  }
+
+  public function getOldPosY()
+  {
+    return $this->oldY;
+  }
+
   /**
    * @return string l'orientation du joueur sur le plateau
    */
@@ -65,6 +77,16 @@ class Player
   public function setPosY(int $posY)
   {
     $this->y = $posY;
+  }
+
+  public function setOldPosX(int $oldPosX)
+  {
+    $this->oldX = $oldPosX;
+  }
+
+  public function setOldPosY(int $oldPosY)
+  {
+    $this->oldY = $oldPosY;
   }
 
   /**
@@ -122,6 +144,9 @@ class Player
    */
   public function moveForward(int $steps)
   {
+    $this->oldX = $this->x;
+    $this->oldY = $this->y;
+
     switch ($this->orientation) {
       case 'N':
         $this->y -= $steps;
