@@ -113,7 +113,6 @@ final class BoardTest extends TestCase
     // Déplace le joueur 1 à la nouvelle position (3, 3)
     $this->board->movePlayer($player1, Board::PLAYER1);
 
-    $grid = $this->board->getGrid();
     $this->assertEquals(
       Board::EMPTY,
       $this->board->getCellState(1, 1),
