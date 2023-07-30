@@ -92,6 +92,42 @@ final class BoardTest extends TestCase
   }
 
   /**
+   * Teste la méthode movePlayer de la classe Board.
+   * Cette méthode vérifie si le joueur est correctement déplacé sur la grille.
+   *
+   * @return void
+   */
+  public function testMovePlayer(): void
+  {
+    $player1 = new Player(1, 1, 'N');
+
+    // Place le joueur 1 à la position initiale (1, 1)
+    $this->board->placePlayer($player1, Board::PLAYER1);
+
+    // Modifie la position du joueur 1
+    $player1->setOldPosX(1);
+    $player1->setOldPosY(1);
+    $player1->setPosX(3);
+    $player1->setPosY(3);
+
+    // Déplace le joueur 1 à la nouvelle position (3, 3)
+    $this->board->movePlayer($player1, Board::PLAYER1);
+
+    $grid = $this->board->getGrid();
+    $this->assertEquals(
+      Board::EMPTY,
+      $this->board->getCellState(1, 1),
+      "La position initiale (1, 1) doit être vide après le déplacement"
+    );
+    $this->assertEquals(
+      Board::PLAYER1,
+      $this->board->getCellState(3, 3),
+      "Le joueur 1 doit être déplacé à la position (3, 3)"
+    );
+  }
+
+
+  /**
    * Teste la méthode display de la classe Board.
    * Cette méthode vérifie si la grille est correctement affichée en console.
    *
