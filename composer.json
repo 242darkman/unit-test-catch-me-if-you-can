@@ -1,7 +1,16 @@
 {
   "scripts": {
-    "test": [
+    "tests": [
       "phpunit ./tests"
+    ],
+    "test:player": [
+      "phpunit ./tests/PlayerTest.php"
+    ],
+    "test:board": [
+      "phpunit ./tests/BoardTest.php"
+    ],
+    "test:game": [
+      "phpunit ./tests/GameTest.php"
     ]
   },
   "require": {
