@@ -14,7 +14,17 @@ final class BoardTest extends TestCase
   /**
    * @var Board
    */
-  protected $board;
+  private $board;
+
+  /**
+   * @var Player Le joueur 1
+   */
+  private $player1;
+
+  /**
+   * @var Player Le joueur 2
+   */
+  private $player2;
 
   /**
    * Initialise le contexte de test.
@@ -28,6 +38,8 @@ final class BoardTest extends TestCase
   protected function setUp(): void
   {
     $this->board = new Board();
+    $this->player1 = new Player(1, 1, 'N');
+    $this->player2 = new Player(2, 2, 'N');
   }
 
   /**
@@ -80,11 +92,9 @@ final class BoardTest extends TestCase
    */
   public function testPlacePlayer(): void
   {
-    $player1 = new Player(1, 1, 'N');
-    $player2 = new Player(2, 2, 'N');
 
-    $this->board->placePlayer($player1, Board::PLAYER1);
-    $this->board->placePlayer($player2, Board::PLAYER2);
+    $this->board->placePlayer($this->player1, Board::PLAYER1);
+    $this->board->placePlayer($this->player2, Board::PLAYER2);
 
     $grid = $this->board->getGrid();
     $this->assertEquals(Board::PLAYER1, $grid[1][1], "Le joueur 1 doit être placé à la position (1, 1)");
@@ -99,19 +109,18 @@ final class BoardTest extends TestCase
    */
   public function testMovePlayer(): void
   {
-    $player1 = new Player(1, 1, 'N');
 
     // Place le joueur 1 à la position initiale (1, 1)
-    $this->board->placePlayer($player1, Board::PLAYER1);
+    $this->board->placePlayer($this->player1, Board::PLAYER1);
 
     // Modifie la position du joueur 1
-    $player1->setOldPosX(1);
-    $player1->setOldPosY(1);
-    $player1->setPosX(3);
-    $player1->setPosY(3);
+    $this->player1->setOldPosX(1);
+    $this->player1->setOldPosY(1);
+    $this->player1->setPosX(3);
+    $this->player1->setPosY(3);
 
     // Déplace le joueur 1 à la nouvelle position (3, 3)
-    $this->board->movePlayer($player1, Board::PLAYER1);
+    $this->board->movePlayer($this->player1, Board::PLAYER1);
 
     $this->assertEquals(
       Board::EMPTY,
@@ -134,11 +143,8 @@ final class BoardTest extends TestCase
    */
   public function testDisplay(): void
   {
-    $player1 = new Player(1, 1, 'N');
-    $player2 = new Player(2, 2, 'S');
-
-    $this->board->placePlayer($player1, Board::PLAYER1);
-    $this->board->placePlayer($player2, Board::PLAYER2);
+    $this->board->placePlayer($this->player1, Board::PLAYER1);
+    $this->board->placePlayer($this->player2, Board::PLAYER2);
 
     $this->expectOutputString("..........\n.1........\n..2.......\n..........\n..........\n..........\n..........\n..........\n..........\n..........\n");
 
