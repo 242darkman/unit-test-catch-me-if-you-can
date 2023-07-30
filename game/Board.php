@@ -7,6 +7,9 @@ namespace App\Game;
  */
 class Board
 {
+  /**
+   * @var array La grille du plateau de jeu.
+   */
   private array $grid;
   const EMPTY = 0;
   const PLAYER1 = 1;
@@ -52,6 +55,18 @@ class Board
     }
   }
 
+  /**
+   * Déplace un joueur d'une ancienne position à une nouvelle position sur la grille.
+   *
+   * Cette méthode déplace un joueur de sa position actuelle à une nouvelle position
+   * indiquée par les coordonnées x et y de l'objet joueur. Avant de déplacer le joueur,
+   * elle vérifie si la nouvelle position est valide en utilisant la méthode isValidPosition
+   * et si le joueur est bien à l'ancienne position sur la grille. Si ces conditions sont remplies,
+   * le joueur est déplacé sur la grille.
+   *
+   * @param Player $player Le joueur à déplacer. Il doit avoir des coordonnées x et y valides.
+   * @param int $playerNum Le numéro du joueur, utilisé pour représenter le joueur sur la grille.
+   */
   public function movePlayer(Player $player, int $playerNum)
   {
     $oldX = $player->getOldPosX();
