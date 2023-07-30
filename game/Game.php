@@ -36,15 +36,33 @@ class Game
         $player->turnRight();
         break;
       case 'forward':
+        $oldX = $player->getPosX();
+        $oldY = $player->getPosY();
         $player->moveForward($steps);
-        break;
-    }
 
-    if (!$this->board->isValidPosition($player->getPosX(), $player->getPosY())) {
-      $player->moveForward($steps); // on annule le mouvement du joueur
+        if ($steps < 1 || $steps > 2) {
+          $steps = 1;
+        }
+
+        if (!$this->board->isValidPosition($player->getPosX(), $player->getPosY())) {
+          $player->setPosX($oldX);
+          $player->setPosY($oldY);
+        } else {
+          $playerNum = $player === $this->player1 ? Board::PLAYER1 : Board::PLAYER2;
+          $this->board->movePlayer($player, $playerNum); // Met à jour la position du joueur sur la grille
+        }
+        break;
     }
   }
 
+  /**
+   * Vérifie que les joueurs peuvent se voir.
+   *
+   * @param Player $player1 Le premier joueur
+   * @param Player $player2 Le deuxième joueur
+   *
+   * @return int|null La distance entre les joueurs si dans la ligne de vision, sinon null
+   */
   public function checkVision(Player $player1, Player $player2)
   {
     $distanceBetweenPlayer = null;
