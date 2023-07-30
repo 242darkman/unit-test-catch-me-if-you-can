@@ -19,9 +19,22 @@ class Player
    * @var orientation orientation du joueur sur la grille
    */
   private string $orientation;
+  /**
+   * @var int Ancienne position x du joueur sur la grille
+   */
   private int $oldX;
+  /**
+   * @var int Ancienne position y du joueur sur la grille
+   */
   private int $oldY;
 
+  /**
+   * Constructeur de la classe Player.
+   * 
+   * @param int $x Position x initiale
+   * @param int $y Position y initiale
+   * @param string $orientation Orientation initiale
+   */
   public function __construct(int $x, int $y, string $orientation)
   {
     $this->x = $x;
@@ -79,11 +92,21 @@ class Player
     $this->y = $posY;
   }
 
+  /**
+   * Change l'ancienne position x du joueur.
+   *
+   * @param int $oldPosX Nouvelle valeur pour la position x
+   */
   public function setOldPosX(int $oldPosX)
   {
     $this->oldX = $oldPosX;
   }
 
+  /**
+   * Change l'ancienne position y du joueur.
+   *
+   * @param int $oldPosY Nouvelle valeur pour la position y
+   */
   public function setOldPosY(int $oldPosY)
   {
     $this->oldY = $oldPosY;
@@ -140,6 +163,8 @@ class Player
   }
 
   /**
+   * Fait avancer le joueur d'un certain nombre de pas.
+   * 
    * @param int $steps nombre à effectuer
    */
   public function moveForward(int $steps)
