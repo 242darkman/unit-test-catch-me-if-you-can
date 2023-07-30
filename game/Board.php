@@ -52,6 +52,20 @@ class Board
     }
   }
 
+  public function movePlayer(Player $player, int $playerNum)
+  {
+    $oldX = $player->getOldPosX();
+    $oldY = $player->getOldPosY();
+    $newX = $player->getPosX();
+    $newY = $player->getPosY();
+
+    if ($this->isValidPosition($newX, $newY) && $this->grid[$oldY][$oldX] === $playerNum) {
+      $this->grid[$oldY][$oldX] = self::EMPTY; // Enlève le joueur de l'ancienne position
+      $this->grid[$newY][$newX] = $playerNum;  // Place le joueur à la nouvelle position
+    }
+  }
+
+
   /**
    * Récupère la grille du plateau de jeu.
    *
