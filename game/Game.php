@@ -12,8 +12,17 @@ use App\Game\Player;
  */
 class Game
 {
+  /**
+   * @var Player Le joueur 1
+   */
   private Player $player1;
+  /**
+   * @var Player Le joueur 2
+   */
   private Player $player2;
+  /**
+   * @var Board Le plateau de jeu
+   */
   private Board $board;
 
   public function __construct(Player $player1, Player $player2)
@@ -25,7 +34,13 @@ class Game
     $this->board->placePlayer($this->player2, Board::PLAYER2);
   }
 
-
+  /**
+   * Joue un tour en effectuant une action.
+   *
+   * @param Player $player Le joueur effectuant le tour
+   * @param string $action L'action à effectuer (left, right, forward)
+   * @param int    $steps  Le nombre de pas pour l'action "forward" (par défaut 1)
+   */
   public function playTurn(Player $player, string $action, int $steps = 1)
   {
     switch ($action) {
@@ -94,27 +109,50 @@ class Game
     return $distanceBetweenPlayer;
   }
 
+  /**
+   * Vérifie si la partie est terminée.
+   *
+   * @return bool True si la partie est terminée, sinon false
+   */
   public function isGameOver(): bool
   {
     $isGameOver = $this->player1->getPosX() == $this->player2->getPosX() && $this->player1->getPosY() == $this->player2->getPosY();
     return $isGameOver;
   }
 
+  /**
+   * Récupère le premier joueur.
+   *
+   * @return Player Le premier joueur
+   */
   public function getPlayer1()
   {
     return $this->player1;
   }
 
+  /**
+   * Récupère le deuxième joueur.
+   *
+   * @return Player Le deuxième joueur
+   */
   public function getPlayer2()
   {
     return $this->player2;
   }
 
+  /**
+   * Récupère le plateau de jeu.
+   *
+   * @return Board Le plateau de jeu
+   */
   public function getBoard()
   {
     return $this->board;
   }
 
+  /**
+   * Affiche le plateau de jeu.
+   */
   public function printBoard()
   {
     $this->board->display();
